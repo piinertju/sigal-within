@@ -130,10 +130,10 @@
         </button>
       </form>
 
-      <!-- ผลลัพธ์ -->
-      <div id="resultBox" class="hidden mt-6 p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-4">
-        <h3 id="resultTitle" class="text-xl font-bold text-emerald-800"></h3>
-        <p id="resultDesc" class="text-gray-700 text-sm"></p>
+      <!-- ผลลัพธ์ (สีกรอบเปลี่ยนตามคะแนน) -->
+      <div id="resultBox" class="hidden mt-6 p-6 rounded-2xl border transition-all duration-300 text-center space-y-4">
+        <h3 id="resultTitle" class="text-xl font-bold"></h3>
+        <p id="resultDesc" class="text-sm"></p>
         <div class="pt-2">
           <button onclick="switchTab('resources')" class="bg-emerald-600 text-white px-5 py-2 rounded-xl text-sm hover:bg-emerald-700 transition">
             ไปที่มุมฮีลใจ
@@ -303,7 +303,7 @@
     // ลิงก์ Google Apps Script ของคุณ
     const scriptURL = 'https://script.google.com/macros/s/AKfycbzQinQNCocDk8jvn76TSyESUj8Pm6XyigErWh4e8L-GzeQlD1WKUrSQrG1UzavYU4rDrg/exec';
 
-    // ส่งผลประเมินความเครียดเข้า Google Sheets
+    // ส่งผลประเมินความเครียดเข้า Google Sheets พร้อมเปลี่ยนสีกรอบ
     function submitAssessment(e) {
       e.preventDefault();
       const form = e.target;
@@ -318,14 +318,23 @@
       const desc = document.getElementById('resultDesc');
       box.classList.remove('hidden');
 
+      // ลบ Class สีเดิมออกก่อน
+      box.className = "mt-6 p-6 rounded-2xl border text-center space-y-4 transition-all duration-300";
+
       if (score <= 4) {
-        title.innerText = "ระดับความเครียด: น้อย (ปกติ)";
+        // เครียดน้อย -> สีเขียว
+        box.classList.add("bg-emerald-50", "border-emerald-200", "text-emerald-900");
+        title.innerText = "🟢 ระดับความเครียด: น้อย (ปกติ)";
         desc.innerText = "คุณจัดการความเครียดได้ดีเยี่ยม! รักษาสมดุลชีวิตแบบนี้ต่อไปนะครับ";
       } else if (score <= 7) {
-        title.innerText = "ระดับความเครียด: ปานกลาง";
+        // เครียดปานกลาง -> สีเหลือง
+        box.classList.add("bg-amber-50", "border-amber-300", "text-amber-900");
+        title.innerText = "🟡 ระดับความเครียด: ปานกลาง";
         desc.innerText = "คุณมีความเครียดสะสมเล็กน้อย ลองฟังเสียงธรรมชาติ หรือสุ่มการ์ดฮีลใจเพื่อผ่อนคลายดูนะ";
       } else {
-        title.innerText = "ระดับความเครียด: สูง";
+        // เครียดสูง -> สีแดง
+        box.classList.add("bg-rose-50", "border-rose-300", "text-rose-900");
+        title.innerText = "🔴 ระดับความเครียด: สูง";
         desc.innerText = "คุณกำลังมีความเครียดค่อนข้างสูง แนะนำให้ลองพูดคุยกับผู้เชี่ยวชาญหรือโทรสายด่วน 1323 ได้ตลอด 24 ชั่วโมงนะครับ";
       }
 
