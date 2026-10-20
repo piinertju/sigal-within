@@ -57,72 +57,6 @@
           <button onclick="switchTab('selfcheck')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-6 py-3 rounded-xl shadow-lg hover:shadow-emerald-200 transition">
             เริ่มประเมินความเครียด
           </button>
-          <button onclick="switchTab('support')" class="bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-300 font-medium pxเรียบร้อยครับ! ผมเอา URL Web App ของ Google Sheets ใส่เข้าไปในโค้ดให้เรียบร้อยแล้วครับ (`https://script.google.com/macros/s/AKfycbzQinQNCocDk8jvn76TSyESUj8Pm6XyigErWh4e8L-GzeQlD1WKUrSQrG1UzavYU4rDrg/exec`)
-
-และในส่วน **"สายด่วนและช่องทางปรึกษา"** ผมปรับแก้ให้เหลือเฉพาะ **สายด่วนกรมสุขภาพจิต (1323)** ตามที่ขอเลยครับ 
-
-คุณสามารถ **คัดลอกโค้ดทั้งหมดด้านล่างนี้** ไปวางทับในไฟล์ `index.html` บน GitHub ได้ทันทีเลยครับ:
-
-```html
-<!DOCTYPE html>
-<html lang="th">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MindSpace - พื้นที่ปลอดภัยสำหรับเยาวชน</title>
-  <!-- Tailwind CSS -->
-  <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
-  <link href="[https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap](https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap)" rel="stylesheet">
-  <style>
-    body { font-family: 'Prompt', sans-serif; }
-  </style>
-</head>
-<body class="bg-emerald-50 text-gray-800 min-h-screen flex flex-col">
-
-  <!-- แถบเมนูด้านบน & ปุ่มฉุกเฉิน (Quick Exit) -->
-  <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
-    <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
-      <div class="flex items-center space-x-2 cursor-pointer" onclick="switchTab('landing')">
-        <span class="text-2xl">🌱</span>
-        <span class="font-bold text-emerald-700 text-lg">MindSpace</span>
-      </div>
-
-      <nav class="hidden md:flex space-x-6 text-sm font-medium text-gray-600">
-        <button onclick="switchTab('landing')" class="hover:text-emerald-600 transition">หน้าแรก</button>
-        <button onclick="switchTab('selfcheck')" class="hover:text-emerald-600 transition">ประเมินความเครียด</button>
-        <button onclick="switchTab('resources')" class="hover:text-emerald-600 transition">พลังฮีลใจ</button>
-        <button onclick="switchTab('support')" class="hover:text-emerald-600 transition">ขอความช่วยเหลือ</button>
-      </nav>
-
-      <button onclick="quickExit()" class="bg-rose-500 hover:bg-rose-600 text-white text-xs md:text-sm font-medium px-4 py-2 rounded-full transition shadow-sm flex items-center space-x-1">
-        <span>🚨 ออกจากหน้าจอนี้ทันที (Quick Exit)</span>
-      </button>
-    </div>
-  </header>
-
-  <!-- เมนูนับมือถือ -->
-  <div class="md:hidden bg-white border-t border-b border-gray-100 flex justify-around py-2 text-xs font-medium text-gray-600">
-    <button onclick="switchTab('landing')">หน้าแรก</button>
-    <button onclick="switchTab('selfcheck')">ประเมินตนเอง</button>
-    <button onclick="switchTab('resources')">ฮีลใจ</button>
-    <button onclick="switchTab('support')">ช่วยเหลือ</button>
-  </div>
-
-  <!-- ส่วนเนื้อหาหลัก -->
-  <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
-
-    <!-- 1. หน้าแรก (Landing Page) -->
-    <section id="landing" class="view-section space-y-8 text-center py-6">
-      <div class="space-y-4">
-        <span class="bg-emerald-100 text-emerald-800 text-xs px-3 py-1 rounded-full font-semibold tracking-wider">Safe Space for Teens</span>
-        <h1 class="text-3xl md:text-4xl font-bold text-gray-800 leading-tight">พื้นที่พักใจ ปลอดภัย ไม่ตัดสิน ไม่เก็บบันทึกตัวตน</h1>
-        <p class="text-gray-600 max-w-xl mx-auto text-sm md:text-base">
-          ไม่ต้องแบกรับทุกอย่างไว้คนเดียว ที่นี่มีแบบประเมินความเครียด เสียงธรรมชาติฮีลใจ และการ์ดพลังบวกที่ช่วยเติมพลังให้คุณ
-        </p>
-        <div class="flex flex-wrap justify-center gap-4 pt-2">
-          <button onclick="switchTab('selfcheck')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-6 py-3 rounded-xl shadow-lg hover:shadow-emerald-200 transition">
-            เริ่มประเมินความเครียด
-          </button>
           <button onclick="switchTab('support')" class="bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-300 font-medium px-6 py-3 rounded-xl transition">
             ขอความช่วยเหลือ / ปรึกษา
           </button>
@@ -258,7 +192,7 @@
         </div>
       </div>
 
-      <!-- รายการสายด่วน (ปรับเหลือเฉพาะกรมสุขภาพจิต) -->
+      <!-- รายการสายด่วน (กรมสุขภาพจิต) -->
       <div class="bg-white rounded-2xl p-6 shadow-sm border border-emerald-100 space-y-4">
         <h3 class="text-xl font-bold text-gray-800 flex items-center gap-2">
           <span>☎️</span> สายด่วนและช่องทางปรึกษา
@@ -303,7 +237,7 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
-          <a href="[https://www.dmh.go.th](https://www.dmh.go.th)" target="_blank" rel="noopener noreferrer" class="p-5 rounded-xl border border-emerald-100 bg-emerald-50/40 hover:bg-emerald-100/60 flex items-center justify-between transition group shadow-sm">
+          <a href="https://www.dmh.go.th" target="_blank" rel="noopener noreferrer" class="p-5 rounded-xl border border-emerald-100 bg-emerald-50/40 hover:bg-emerald-100/60 flex items-center justify-between transition group shadow-sm">
             <div class="flex items-center space-x-3">
               <span class="text-3xl">🏥</span>
               <div class="text-left">
@@ -314,7 +248,7 @@
             <span class="text-emerald-600 text-sm font-semibold group-hover:translate-x-1 transition">ไปที่เว็บไซต์ ➔</span>
           </a>
 
-          <a href="[https://www.moph.go.th](https://www.moph.go.th)" target="_blank" rel="noopener noreferrer" class="p-5 rounded-xl border border-emerald-100 bg-emerald-50/40 hover:bg-emerald-100/60 flex items-center justify-between transition group shadow-sm">
+          <a href="https://www.moph.go.th" target="_blank" rel="noopener noreferrer" class="p-5 rounded-xl border border-emerald-100 bg-emerald-50/40 hover:bg-emerald-100/60 flex items-center justify-between transition group shadow-sm">
             <div class="flex items-center space-x-3">
               <span class="text-3xl">🏛️</span>
               <div class="text-left">
@@ -348,7 +282,7 @@
 
     // Quick Exit
     function quickExit() {
-      window.location.href = '[https://www.google.com](https://www.google.com)';
+      window.location.href = 'https://www.google.com';
     }
 
     // การ์ดฮีลใจ
@@ -367,7 +301,7 @@
     }
 
     // ลิงก์ Google Apps Script ของคุณ
-    const scriptURL = '[https://script.google.com/macros/s/AKfycbzQinQNCocDk8jvn76TSyESUj8Pm6XyigErWh4e8L-GzeQlD1WKUrSQrG1UzavYU4rDrg/exec](https://script.google.com/macros/s/AKfycbzQinQNCocDk8jvn76TSyESUj8Pm6XyigErWh4e8L-GzeQlD1WKUrSQrG1UzavYU4rDrg/exec)';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzQinQNCocDk8jvn76TSyESUj8Pm6XyigErWh4e8L-GzeQlD1WKUrSQrG1UzavYU4rDrg/exec';
 
     // ส่งผลประเมินความเครียดเข้า Google Sheets
     function submitAssessment(e) {
