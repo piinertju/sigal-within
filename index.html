@@ -57,8 +57,8 @@
           <button onclick="switchTab('selfcheck')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-6 py-3 rounded-xl shadow-lg hover:shadow-emerald-200 transition">
             เริ่มประเมินความเครียด
           </button>
-          <button onclick="switchTab('resources')" class="bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-300 font-medium px-6 py-3 rounded-xl transition">
-            ฟังเสียงธรรมชาติฮีลใจ
+          <button onclick="switchTab('support')" class="bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-300 font-medium px-6 py-3 rounded-xl transition">
+            ขอความช่วยเหลือ / ปรึกษา
           </button>
         </div>
       </div>
@@ -157,8 +157,7 @@
 
       <!-- เสียงธรรมชาติ -->
       <div class="bg-white p-6 rounded-2xl shadow-sm border border-emerald-100 space-y-4">
-        <h2 class="text-xl font-bold text-gray-800">🌧️ เสียงธรรมชาติผ่อนคลาย (Web Audio Synthesizer)</h2>
-        <p class="text-xs text-gray-500">สร้างเสียงจำลองธรรมชาติสดๆ ผ่าน Web Audio API เพื่อความผ่อนคลาย</p>
+        <h2 class="text-xl font-bold text-gray-800">🌧️ เสียงธรรมชาติผ่อนคลาย</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <button onclick="toggleSound('rain')" id="rainBtn" class="p-4 border rounded-xl hover:bg-emerald-50 text-left font-medium flex justify-between items-center transition">
             <span>🌧️ เสียงฝนตกผ่อนคลาย</span>
@@ -172,7 +171,7 @@
       </div>
     </section>
 
-    <!-- 4. ส่วนขอความช่วยเหลือ & สายด่วน (Support Section) -->
+    <!-- 4. ส่วนขอความช่วยเหลือ & สายด่วน พร้อมฟอร์มส่งข้อมูลและช่องทางติดต่อกลับ -->
     <section id="support" class="view-section hidden max-w-4xl mx-auto py-2 space-y-6">
       
       <!-- แบนเนอร์สายด่วนฉุกเฉิน -->
@@ -187,7 +186,7 @@
               สายด่วนสุขภาพจิต ปรึกษาฟรี ไม่มีค่าใช้จ่าย พร้อมรับฟังทุกความรู้สึกของคุณ
             </p>
           </div>
-          <a href="tel:1323" class="inline-flex items-center gap-3 bg-white text-emerald-800 hover:bg-emerald-50 px-6 py-4 rounded-xl font-bold text-xl shadow-lg transition transform hover:-translate-y-0.5 active:translate-y-0">
+          <a href="tel:1323" class="inline-flex items-center gap-3 bg-white text-emerald-800 hover:bg-emerald-50 px-6 py-4 rounded-xl font-bold text-xl shadow-lg transition">
             <span>📞 โทร 1323</span>
           </a>
         </div>
@@ -196,7 +195,7 @@
       <!-- รายการสายด่วน -->
       <div class="bg-white rounded-2xl p-6 shadow-sm border border-emerald-100 space-y-4">
         <h3 class="text-xl font-bold text-gray-800 flex items-center gap-2">
-          <span>☎️</span> สายด่วนและช่องทางปรึกษาอื่นๆ
+          <span>☎️</span> สายด่วนและช่องทางปรึกษา
         </h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div class="p-4 rounded-xl bg-emerald-50/50 border border-emerald-100 flex items-center justify-between">
@@ -216,30 +215,58 @@
         </div>
       </div>
 
-      <!-- รายชื่อหน่วยงานที่ร่วมพัฒนาและเชื่อมโยงระบบ -->
+      <!-- ⭐ ฟอร์มขอความช่วยเหลือและช่องทางติดต่อกลับ (ส่งเข้า Google Sheets) -->
+      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-emerald-100 space-y-4">
+        <h3 class="text-xl font-bold text-gray-800">💬 ฝากข้อความขอความช่วยเหลือ / ปรึกษาผู้เชี่ยวชาญ</h3>
+        <p class="text-xs text-gray-500">ข้อมูลของคุณจะถูกเก็บเป็นความลับ ปลอดภัย และส่งตรงเพื่อให้ทีมงานหรือผู้เชี่ยวชาญติดต่อกลับ</p>
+        
+        <form id="helpForm" onsubmit="submitHelp(event)" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">เรื่องที่ต้องการปรึกษา / ระบายความรู้สึก</label>
+            <textarea id="helpMessage" rows="4" class="w-full p-3 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none" placeholder="พิมพ์สิ่งที่คุณเจอ หรือความรู้สึกตอนนี้..." required></textarea>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">ช่องทางติดต่อกลับ (เช่น เบอร์โทร หรือ Line ID)</label>
+            <input type="text" id="helpContact" class="w-full p-3 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none" placeholder="เช่น 081-234-5678 หรือ Line ID ของคุณ" required />
+          </div>
+          <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow transition">
+            ส่งข้อมูลขอความช่วยเหลือ
+          </button>
+        </form>
+        <div id="helpResultMsg" class="hidden p-4 bg-emerald-50 text-emerald-800 rounded-xl text-center font-medium text-sm">
+          ✅ ส่งข้อมูลขอความช่วยเหลือเรียบร้อยแล้ว ทีมงานจะรีบติดต่อกลับโดยเร็วที่สุดครับ
+        </div>
+      </div>
+
+      <!-- หน่วยงานที่ร่วมพัฒนา -->
       <div class="bg-white rounded-2xl p-6 shadow-sm border border-emerald-100 space-y-6">
         <div class="text-center space-y-1">
           <h3 class="text-xl font-bold text-gray-800">หน่วยงานที่ร่วมพัฒนาและเชื่อมโยงระบบ</h3>
-          <p class="text-sm text-gray-500">เพื่อการดูแลสุขภาพจิตเยาวชนอย่างครบวงจร</p>
+          <p class="text-sm text-gray-500">คลิกที่การ์ดเพื่อเยี่ยมชมเว็บไซต์หลักของหน่วยงาน</p>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          <div class="p-4 rounded-xl border border-gray-100 bg-gray-50/80 flex flex-col items-center text-center space-y-2 hover:border-emerald-300 transition">
-            <span class="text-3xl">🏥</span>
-            <span class="text-xs font-semibold text-gray-700">กรมสุขภาพจิต</span>
-          </div>
-          <div class="p-4 rounded-xl border border-gray-100 bg-gray-50/80 flex flex-col items-center text-center space-y-2 hover:border-emerald-300 transition">
-            <span class="text-3xl">🏛️</span>
-            <span class="text-xs font-semibold text-gray-700">กระทรวงสาธารณสุข</span>
-          </div>
-          <div class="p-4 rounded-xl border border-gray-100 bg-gray-50/80 flex flex-col items-center text-center space-y-2 hover:border-emerald-300 transition">
-            <span class="text-3xl">🤝</span>
-            <span class="text-xs font-semibold text-gray-700">วัดใจ.com</span>
-          </div>
-          <div class="p-4 rounded-xl border border-gray-100 bg-gray-50/80 flex flex-col items-center text-center space-y-2 hover:border-emerald-300 transition">
-            <span class="text-3xl">🌱</span>
-            <span class="text-xs font-semibold text-gray-700">สุขภาพจิตเด็กและวัยรุ่น</span>
-          </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+          <a href="https://www.dmh.go.th" target="_blank" rel="noopener noreferrer" class="p-5 rounded-xl border border-emerald-100 bg-emerald-50/40 hover:bg-emerald-100/60 flex items-center justify-between transition group shadow-sm">
+            <div class="flex items-center space-x-3">
+              <span class="text-3xl">🏥</span>
+              <div class="text-left">
+                <div class="font-bold text-gray-800 group-hover:text-emerald-700 transition">กรมสุขภาพจิต</div>
+                <div class="text-xs text-gray-500">Department of Mental Health</div>
+              </div>
+            </div>
+            <span class="text-emerald-600 text-sm font-semibold group-hover:translate-x-1 transition">ไปที่เว็บไซต์ ➔</span>
+          </a>
+
+          <a href="https://www.moph.go.th" target="_blank" rel="noopener noreferrer" class="p-5 rounded-xl border border-emerald-100 bg-emerald-50/40 hover:bg-emerald-100/60 flex items-center justify-between transition group shadow-sm">
+            <div class="flex items-center space-x-3">
+              <span class="text-3xl">🏛️</span>
+              <div class="text-left">
+                <div class="font-bold text-gray-800 group-hover:text-emerald-700 transition">กระทรวงสาธารณสุข</div>
+                <div class="text-xs text-gray-500">Ministry of Public Health</div>
+              </div>
+            </div>
+            <span class="text-emerald-600 text-sm font-semibold group-hover:translate-x-1 transition">ไปที่เว็บไซต์ ➔</span>
+          </a>
         </div>
       </div>
 
@@ -254,7 +281,7 @@
 
   <!-- JavaScript Logic -->
   <script>
-    // การสลับแท็บ
+    // สลับแท็บ
     function switchTab(tabId) {
       document.querySelectorAll('.view-section').forEach(sec => sec.classList.add('hidden'));
       const target = document.getElementById(tabId);
@@ -262,7 +289,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Quick Exit (กดออกทันทีไป Google)
+    // Quick Exit
     function quickExit() {
       window.location.href = 'https://www.google.com';
     }
@@ -282,7 +309,10 @@
       document.getElementById('healingCard').innerText = randomCard;
     }
 
-    // คำนวณแบบประเมิน ST-5
+    // ⚠️ ใส่ URL ที่ได้จาก Google Apps Script ตรงนี้ ⚠️
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzQinQNCocDk8jvn76TSyESUj8Pm6XyigErWh4e8L-GzeQlD1WKUrSQrG1UzavYU4rDrg/exec';
+
+    // ส่งผลประเมินความเครียดเข้า Google Sheets
     function submitAssessment(e) {
       e.preventDefault();
       const form = e.target;
@@ -308,16 +338,39 @@
         desc.innerText = "คุณกำลังมีความเครียดค่อนข้างสูง แนะนำให้ลองพูดคุยกับผู้เชี่ยวชาญหรือโทรสายด่วน 1323 ได้ตลอด 24 ชั่วโมงนะครับ";
       }
 
-      // ส่งข้อมูลเข้า Webhook Google Apps Script
-      fetch('https://script.google.com/macros/s/AKfycbwqmJ2iJ-J7t-eE7RzWvJzG3T5a7L/exec', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ score: score, timestamp: new Date().toISOString() })
-      }).catch(err => console.log(err));
+      if (scriptURL && scriptURL !== 'ใส่_WEB_APP_URL_ตรงนี้') {
+        fetch(scriptURL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'ประเมินความเครียด', detail: 'คะแนนรวม: ' + score, contact: '-', timestamp: new Date().toLocaleString('th-TH') })
+        }).catch(err => console.error(err));
+      }
     }
 
-    // Web Audio Synthesizer (เสียงธรรมชาติ)
+    // ส่งฟอร์มขอความช่วยเหลือเข้า Google Sheets
+    function submitHelp(e) {
+      e.preventDefault();
+      const message = document.getElementById('helpMessage').value;
+      const contact = document.getElementById('helpContact').value;
+
+      if (scriptURL && scriptURL !== 'ใส่_WEB_APP_URL_ตรงนี้') {
+        fetch(scriptURL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'ขอความช่วยเหลือ', detail: message, contact: contact, timestamp: new Date().toLocaleString('th-TH') })
+        }).then(() => {
+          document.getElementById('helpResultMsg').classList.remove('hidden');
+          document.getElementById('helpForm').reset();
+        }).catch(err => console.error(err));
+      } else {
+        document.getElementById('helpResultMsg').classList.remove('hidden');
+        document.getElementById('helpForm').reset();
+      }
+    }
+
+    // Web Audio Synthesizer
     let audioCtx = null;
     let rainNode = null;
     let wavesNode = null;
@@ -371,14 +424,11 @@
       const whiteNoise = ctx.createBufferSource();
       whiteNoise.buffer = buffer;
       whiteNoise.loop = true;
-
       const filter = ctx.createBiquadFilter();
       filter.type = 'lowpass';
       filter.frequency.value = 1000;
-
       const gain = ctx.createGain();
       gain.gain.value = 0.15;
-
       whiteNoise.connect(filter);
       filter.connect(gain);
       gain.connect(ctx.destination);
@@ -406,10 +456,8 @@
       const pinkNoise = ctx.createBufferSource();
       pinkNoise.buffer = buffer;
       pinkNoise.loop = true;
-
       const gain = ctx.createGain();
       gain.gain.value = 0.2;
-
       pinkNoise.connect(gain);
       gain.connect(ctx.destination);
       pinkNoise.start();
